@@ -80,8 +80,8 @@ woe.bin <- function(x, y, sc = c(NA, NaN, Inf), sc.method = "together", y.type =
 	ds <- tbl.correction.01(tbl = ds, woe.gap = woe.gap, y.check = y.check)
 	sc.u <- unique(sc)
 	sc.g <- ds$bin[ds$type%in%"special cases"]
-	x.mins <- ds$x.min[!ds$bin%in%sc.u]
-	x.maxs <- ds$x.max[!ds$bin%in%sc.u]
+	x.mins <- ds$x.min[!ds$bin%in%sc.u & !ds$bin%in%"SC"]
+	x.maxs <- ds$x.max[!ds$bin%in%sc.u & !ds$bin%in%"SC"]
 	x.trans <- slice.variable(x.orig = d$x, x.lb = x.mins, x.ub = x.maxs, 
 					  sc.u = sc.u, sc.g = sc.g) 
 return(list(summary.tbl = ds, x.trans = x.trans))

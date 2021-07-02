@@ -98,8 +98,8 @@ sts.bin <- function(x, y, sc = c(NA, NaN, Inf), sc.method = "together", y.type =
 	ds <- woe.calc(tbl = ds, y.check = y.check)
 	sc.u <- unique(sc)
 	sc.g <- ds$bin[ds$type%in%"special cases"]
-	x.mins <- ds$x.min[!ds$bin%in%sc.u]
-	x.maxs <- ds$x.max[!ds$bin%in%sc.u]
+	x.mins <- ds$x.min[!ds$bin%in%sc.u & !ds$bin%in%"SC"]
+	x.maxs <- ds$x.max[!ds$bin%in%sc.u & !ds$bin%in%"SC"]
 	x.trans <- slice.variable(x.orig = d$x, x.lb = x.mins, x.ub = x.maxs, 
 					  sc.u = sc.u, sc.g = sc.g) 
 return(list(summary.tbl = ds, x.trans = x.trans))
@@ -200,9 +200,9 @@ return(res)
 }
 #bin merging based on t test
 t.test.g <- function(x1, x2, sd1, sd2, no1, no2, alternative) {
- 	std1 <- sd1/sqrt(no1)
-      std2 <- sd2/sqrt(no2)
-      std <- sqrt(std1^2 + std2^2)
+	std1 <- sd1/sqrt(no1)
+	std2 <- sd2/sqrt(no2)
+	std <- sqrt(std1^2 + std2^2)
 	t.stat <- (x1 - x2) / std
 	df <-  std^4/(std1^4 / (no1 - 1) + std2^4 / (no2 - 1))
 	if	(alternative == "less") {
