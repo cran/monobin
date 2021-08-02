@@ -4,7 +4,8 @@ checks.init <- function(x, y, sc, sc.method, y.type, force.trend) {
 	yt.opts <- c(NA, "bina", "cont")
 	ft.opts <- c(NA, "i", "d")
 
-	cond.01 <- !is.numeric(x) | !is.numeric(y) | !is.numeric(sc) 
+	cond.01 <- !is.numeric(x) | !is.numeric(y) | ifelse(length(sc) == 1, ifelse(is.numeric(sc) | is.na(sc), FALSE,  TRUE), 
+							    ifelse(is.numeric(sc), FALSE, TRUE))
 	cond.02 <- !sc.method[1]%in%scm.opts
 	cond.03 <- !y.type[1]%in%yt.opts
 	cond.04 <- !force.trend[1]%in%ft.opts
@@ -36,9 +37,10 @@ checks.iter <- function(d, d.cc, y.type) {
 		} else {
 		if	(y.type[1] == "bina") {
 			cond.03 <- !sum(d$y[!is.na(d$y)]%in%c(0, 1)) == length(d$y[!is.na(d$y)])
+			} else {
+			cond.03 <- FALSE
 			}
 		y.check <- y.type[1]
-		cond.03 <- FALSE
 		}
 	cond4 <- nrow(d.cc) == 0
 	cond.all <- c(cond.01, cond.02, cond.03, cond4)
@@ -50,7 +52,7 @@ checks.iter <- function(d, d.cc, y.type) {
 	msger <- switch(as.character(which.cond), 
 			    "1" = "data.frame(bin = 'y has single unique value for complete cases')",
 			    "2" = "data.frame(bin = 'x has single unique value for complete cases')",	
-			    "3" = "stop('y is not 0/1 varibale)'",
+			    "3" = "stop('y is not 0/1 varibale')",
 			    "4" = "data.frame(bin = 'no complete cases')")
 return(list(which.cond, msger, y.check))
 }
