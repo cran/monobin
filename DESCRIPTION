@@ -1,6 +1,6 @@
 Package: monobin
 Title: Monotonic Binning for Credit Rating Models
-Version: 0.1.1
+Version: 0.2.0
 Authors@R: 
     person(given = "Andrija",
            family = "Djurovic",
@@ -21,7 +21,7 @@ LazyData: true
 RoxygenNote: 7.1.1
 Depends: dplyr, Hmisc, R (>= 2.10)
 NeedsCompilation: no
-Packaged: 2021-08-02 20:36:12 UTC; adjurovic
+Packaged: 2021-10-21 10:52:02 UTC; adjurovic
 Author: Andrija Djurovic [aut, cre]
 Repository: CRAN
-Date/Publication: 2021-08-02 20:50:02 UTC
+Date/Publication: 2021-10-21 11:20:02 UTC
