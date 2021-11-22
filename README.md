@@ -1,4 +1,4 @@
-# monobin 0.2.0
+# monobin 0.2.1
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -10,7 +10,7 @@ separately from so-called complete cases.
 
 ## Installation
 
-You can install the released version of monobin from [CRAN](https://CRAN.R-project.org) executing the following code in R session:
+You can install the released version of monobin from the [CRAN](https://CRAN.R-project.org) executing the following code in R session:
 
 ``` r
 install.packages("monobin")
